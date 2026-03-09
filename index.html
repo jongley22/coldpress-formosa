@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formosa Foods 寶島食品 — Made in Christchurch, for New Zealand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #0A7E8C;
+    --teal-dark: #065A63;
+    --teal-light: #e8f5f6;
+    --white: #ffffff;
+    --offwhite: #FAFAF8;
+    --near-black: #111111;
+    --grey: #444444;
+    --grey-light: #f2f2f0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--near-black);
+    background: var(--white);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    transition: box-shadow 0.3s;
+    padding: 0 5%;
+  }
+  nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1.1;
+    text-decoration: none; color: var(--teal);
+  }
+  .nav-logo-en {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; letter-spacing: 0.02em; color: var(--teal);
+  }
+  .nav-logo-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.65rem; letter-spacing: 0.12em; color: var(--grey);
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--near-black); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal); color: white !important;
+    padding: 0.45rem 1.2rem; border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal-dark) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    padding-top: 68px;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    background: var(--white);
+    padding-left: 5%; padding-right: 5%;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '寶島食品';
+    position: absolute; right: -2%;
+    top: 50%; transform: translateY(-50%);
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(120px, 18vw, 260px);
+    color: rgba(10,126,140,0.04);
+    line-height: 1; pointer-events: none;
+    white-space: nowrap;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+    padding: 5rem 0;
+  }
+  .hero-story { position: relative; z-index: 2; }
+  .hero-en {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    line-height: 1.05; color: var(--teal);
+    letter-spacing: -0.01em;
+  }
+  .hero-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    color: var(--grey); letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+  .hero-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    color: var(--near-black); margin-top: 1.8rem;
+    line-height: 1.3; font-style: italic;
+  }
+  .hero-sub {
+    font-size: 1rem; color: var(--grey); margin-top: 0.8rem;
+    font-weight: 400; line-height: 1.6;
+  }
+  .hero-cta {
+    display: inline-block; margin-top: 2rem;
+    background: var(--teal); color: white;
+    padding: 0.9rem 2.2rem; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  /* PRODUCT CARD in hero */
+  .hero-product {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .hero-product-main {
+    background: var(--teal);
+    border-radius: 8px;
+    padding: 3.5rem 2.5rem;
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .hero-product-main::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.12), transparent 60%);
+  }
+  .hero-product-main::after {
+    content: '🍜';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: 5rem; opacity: 0.25;
+  }
+  .hero-product-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: white;
+    position: relative; z-index: 1;
+  }
+  .hero-product-sub {
+    font-size: 0.85rem; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    position: relative; z-index: 1; margin-top: 0.25rem;
+  }
+  .hero-product-mini {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .mini-card {
+    background: var(--offwhite);
+    border: 1px solid rgba(10,126,140,0.15);
+    border-radius: 6px; padding: 1.2rem;
+    border-top: 3px solid var(--teal);
+  }
+  .mini-card-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: var(--teal-dark);
+  }
+  .mini-card-desc {
+    font-size: 0.78rem; color: var(--grey); margin-top: 0.3rem;
+  }
+
+  /* NUMBERS BAR */
+  .numbers-bar {
+    background: var(--near-black);
+    padding: 2.5rem 5%;
+  }
+  .numbers-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: center; align-items: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center; padding: 0 3rem;
+    position: relative;
+  }
+  .stat:not(:last-child)::after {
+    content: '·';
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    color: rgba(255,255,255,0.3); font-size: 1.5rem;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--teal); display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem; color: rgba(255,255,255,0.7);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem;
+  }
+
+  /* PRODUCTS SECTION */
+  .products {
+    padding: 6rem 5%;
+    background: var(--offwhite);
+  }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { margin-bottom: 3rem; }
+  .section-kicker {
+    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); font-weight: 600; margin-bottom: 0.6rem;
+    display: block;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); color: var(--near-black);
+    line-height: 1.15;
+  }
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--white);
+    border-radius: 6px;
+    border-top: 4px solid var(--teal);
+    padding: 2.2rem 2rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 32px rgba(10,126,140,0.12);
+    transform: translateY(-3px);
+  }
+  .product-icon {
+    font-size: 2.5rem; margin-bottom: 1rem; display: block;
+  }
+  .product-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; color: var(--near-black); margin-bottom: 0.6rem;
+  }
+  .product-name-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.85rem; color: var(--grey); letter-spacing: 0.1em;
+    margin-bottom: 0.8rem; display: block;
+  }
+  .product-desc {
+    font-size: 0.95rem; color: var(--grey); line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .product-enquire {
+    font-size: 0.85rem; font-weight: 600; color: var(--teal);
+    text-decoration: none; letter-spacing: 0.05em;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .product-enquire:hover { gap: 0.7rem; }
+
+  /* ABOUT */
+  .about {
+    padding: 6rem 5%;
+    background: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .about-text {}
+  .about-body {
+    font-size: 1.1rem; color: var(--grey); line-height: 1.75;
+    margin-top: 1.5rem;
+  }
+  .about-body strong { color: var(--near-black); }
+  .about-visual {
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .about-zh-large {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(4rem, 8vw, 9rem);
+    color: rgba(10,126,140,0.1);
+    line-height: 1; letter-spacing: 0.05em;
+    text-align: center;
+  }
+  .about-zh-overlay {
+    position: absolute;
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    color: var(--teal-dark);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  /* BIDFOOD BAR */
+  .bidfood-bar {
+    background: var(--grey-light);
+    padding: 2rem 5%;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .bidfood-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+  .bidfood-text {
+    font-size: 0.95rem; color: var(--grey); font-weight: 500;
+  }
+  .bidfood-badge {
+    background: var(--teal); color: white;
+    padding: 0.3rem 1rem; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 6rem 5%;
+    background: var(--white);
+  }
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .contact-info {}
+  .contact-details { margin-top: 2rem; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .contact-detail-icon { font-size: 1.1rem; margin-top: 0.15rem; }
+  .contact-detail-text { font-size: 0.95rem; color: var(--grey); }
+  .contact-detail-text strong { color: var(--near-black); display: block; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .contact-form {}
+  .form-row { margin-bottom: 1.2rem; }
+  .form-row label {
+    display: block; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--grey); margin-bottom: 0.4rem;
+  }
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    border: 1.5px solid rgba(0,0,0,0.12);
+    border-radius: 4px; padding: 0.75rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--near-black); background: var(--white);
+    outline: none; transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus { border-color: var(--teal); }
+  .form-row textarea { min-height: 120px; resize: vertical; }
+  .form-submit {
+    background: var(--teal); color: white;
+    border: none; padding: 0.9rem 2.5rem;
+    border-radius: 4px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+  }
+  .form-submit:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--near-black);
+    padding: 3rem 5%;
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-brand { }
+  .footer-en {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: var(--teal);
+  }
+  .footer-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em; margin-top: 0.2rem;
+  }
+  .footer-details {
+    font-size: 0.82rem; line-height: 1.8; text-align: right;
+  }
+  .footer-details a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+  /* HAMBURGER */
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--near-black); margin: 5px 0;
+    transition: transform 0.3s;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-story > * { animation: fadeUp 0.7s ease both; }
+  .hero-story > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-story > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-story > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-story > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-story > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero-product { animation: fadeUp 0.9s 0.3s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column; position: absolute;
+      top: 68px; left: 0; right: 0; background: white;
+      padding: 1.5rem 5%; gap: 1rem; border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .nav-toggle { display: block; }
+
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 0; }
+    .hero::before { display: none; }
+    .hero-product-main { aspect-ratio: 16/9; }
+    .hero-product-mini { grid-template-columns: 1fr 1fr; }
+    .product-grid { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .stat { padding: 0 1.5rem; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-details { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-en">Formosa Foods</span>
+      <span class="nav-logo-zh">寶島食品</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Stockists</a></li>
+      <li><a href="#contact" class="nav-cta">Enquire Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-story">
+      <div class="hero-en">Formosa Foods</div>
+      <div class="hero-zh">寶島食品</div>
+      <p class="hero-tagline">Made in Christchurch,<br>for New Zealand.</p>
+      <p class="hero-sub">Sixteen years of craft. Now supplying New Zealand through Bidfood.</p>
+      <a href="#products" class="hero-cta">View Our Range</a>
+    </div>
+    <div class="hero-product">
+      <div class="hero-product-main">
+        <div class="hero-product-label">Fresh Noodles</div>
+        <div class="hero-product-sub">Christchurch Made · Since 2008</div>
+      </div>
+      <div class="hero-product-mini">
+        <div class="mini-card">
+          <div class="mini-card-name">Pastries</div>
+          <div class="mini-card-desc">Hand-crafted, traditional recipes</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-name">Dumplings</div>
+          <div class="mini-card-desc">Fresh, frozen, wholesale ready</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="numbers-bar">
+  <div class="numbers-inner">
+    <div class="stat">
+      <span class="stat-num">16</span>
+      <span class="stat-label">Years in Business</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">CHC</span>
+      <span class="stat-label">Christchurch Made</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">NZ</span>
+      <span class="stat-label">Nationwide via Bidfood</span>
+    </div>
+  </div>
+</div>
+
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-kicker">Our Range</span>
+      <h2 class="section-title">Made the right way,<br>from Burnside to your kitchen.</h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <span class="product-icon">🍜</span>
+        <h3 class="product-name">Noodles</h3>
+        <span class="product-name-zh">麵條</span>
+        <p class="product-desc">Fresh and dried noodle varieties made in-house. Consistent quality for Chinese restaurants and food service operators across New Zealand.</p>
+        <a href="#contact" class="product-enquire">Enquire about supply →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🥟</span>
+        <h3 class="product-name">Pastries</h3>
+        <span class="product-name-zh">點心</span>
+        <p class="product-desc">Traditional Chinese pastries crafted to family recipes. Available fresh and frozen for wholesale and restaurant supply.</p>
+        <a href="#contact" class="product-enquire">Enquire about supply →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🥟</span>
+        <h3 class="product-name">Dumplings</h3>
+        <span class="product-name-zh">餃子</span>
+        <p class="product-desc">Hand-made dumplings ready for your kitchen. Wholesale quantities available with consistent lead times for commercial operations.</p>
+        <a href="#contact" class="product-enquire">Enquire about supply →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <span class="section-kicker">Our Story</span>
+      <h2 class="section-title">Sixteen years.<br>Still making it here.</h2>
+      <p class="about-body">
+        Formosa Foods was built in Christchurch by a family who understood that great food starts with craft, not shortcuts. For sixteen years we have been making noodles, pastries, and dumplings the right way — from a kitchen in Burnside, for tables all over New Zealand.<br><br>
+        <strong>Family owned. Proudly Christchurch.</strong> We supply Chinese restaurants, golf clubs, and food service venues across the South Island — and now, through Bidfood, the rest of New Zealand.
+      </p>
+    </div>
+    <div class="about-visual">
+      <div class="about-zh-large">寶島<br>食品</div>
+      <div class="about-zh-overlay">寶島食品</div>
+    </div>
+  </div>
+</section>
+
+<div class="bidfood-bar">
+  <div class="bidfood-inner">
+    <p class="bidfood-text">Now available nationally through</p>
+    <span class="bidfood-badge">Bidfood NZ</span>
+    <p class="bidfood-text">— New Zealand's leading food service distributor</p>
+  </div>
+</div>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <span class="section-kicker">Get in Touch</span>
+      <h2 class="section-title">Let's talk supply.</h2>
+      <p style="color: var(--grey); margin-top: 1rem; font-size: 0.95rem; line-height: 1.7;">For wholesale, restaurant supply, distribution enquiries, and stockist information — reach out below or contact us directly.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span class="contact-detail-icon">📍</span>
+          <div class="contact-detail-text">
+            <strong>Address</strong>
+            32b Sheffield Crescent, Burnside, Christchurch
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">📞</span>
+          <div class="contact-detail-text">
+            <strong>Phone</strong>
+            03 358-8798
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">✉️</span>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            info@formosafoods.co.nz
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <label>Your Name</label>
+        <input type="text" placeholder="Sam Lu">
+      </div>
+      <div class="form-row">
+        <label>Business Name</label>
+        <input type="text" placeholder="Restaurant / Company name">
+      </div>
+      <div class="form-row">
+        <label>Phone</label>
+        <input type="tel" placeholder="Your phone number">
+      </div>
+      <div class="form-row">
+        <label>Enquiry Type</label>
+        <select>
+          <option>Wholesale Supply</option>
+          <option>Restaurant Supply</option>
+          <option>Distribution</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your business and what you're looking for…"></textarea>
+      </div>
+      <button class="form-submit">Send Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-en">Formosa Foods</div>
+      <div class="footer-zh">寶島食品 · Made in Christchurch, for New Zealand.</div>
+    </div>
+    <div class="footer-details">
+      32b Sheffield Crescent, Burnside, Christchurch<br>
+      <a href="tel:033588798">03 358-8798</a> · <a href="mailto:info@formosafoods.co.nz">info@formosafoods.co.nz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+</body>
+</html>
