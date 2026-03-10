@@ -49,8 +49,10 @@
     display: flex; flex-direction: column; align-items: flex-start;
     line-height: 1.15; text-decoration: none;
   }
-  .nav-logo-img {
-    height: 40px; width: auto; display: block;
+  .nav-logo-en {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; letter-spacing: -0.01em;
+    color: var(--teal); font-weight: 400;
   }
   .nav-logo-zh {
     font-family: 'Noto Serif SC', serif;
@@ -61,9 +63,9 @@
     display: flex; align-items: center; gap: 2rem; list-style: none;
   }
   .nav-links a {
-    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
-    color: var(--near-black); text-decoration: none; text-transform: uppercase;
-    transition: color 0.2s;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em;
+    color: #111111; text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s; opacity: 1;
   }
   .nav-links a:hover { color: var(--teal); }
   .nav-cta {
@@ -128,33 +130,40 @@
   }
   .hero-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
-  /* Hero product card — photo background */
+  /* Hero product card — clean text card (no photo) */
   .hero-product { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.5rem; }
   .hero-product-main {
+    background: var(--offwhite);
+    border: 1px solid rgba(42,172,226,0.15);
+    border-top: 4px solid var(--teal);
     border-radius: 8px;
-    padding: 3.5rem 2.5rem;
-    position: relative; overflow: hidden;
-    aspect-ratio: 4/3;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    background-image: url('https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=800&q=75&auto=format&fit=crop');
-    background-size: cover; background-position: center;
+    padding: 2.2rem 2rem;
+    display: flex; flex-direction: column; justify-content: flex-start;
   }
-  /* Teal overlay on photo */
-  .hero-product-main::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: rgba(26,138,181,0.65);
+  .hero-product-rule {
+    display: block; width: 40px; height: 2px;
+    background: var(--teal); margin-bottom: 1.2rem;
+    border: none;
   }
   .hero-product-label {
     font-family: 'DM Serif Display', serif;
-    font-size: 2rem; color: white;
-    position: relative; z-index: 1;
+    font-size: 1.6rem; color: var(--near-black);
   }
-  .hero-product-sub {
-    font-size: 0.85rem; color: rgba(255,255,255,0.85);
-    letter-spacing: 0.08em; text-transform: uppercase;
-    position: relative; z-index: 1; margin-top: 0.25rem;
+  .hero-product-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.85rem; color: var(--grey); letter-spacing: 0.1em;
+    margin-top: 0.3rem; margin-bottom: 0.8rem; display: block;
   }
+  .hero-product-desc {
+    font-size: 0.95rem; color: var(--grey); line-height: 1.65; margin-bottom: 1.2rem;
+  }
+  .hero-product-enquire {
+    font-size: 0.85rem; font-weight: 600; color: var(--teal);
+    text-decoration: none; letter-spacing: 0.05em;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .hero-product-enquire:hover { gap: 0.7rem; }
   .hero-product-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .mini-card {
     background: var(--offwhite);
@@ -190,6 +199,7 @@
   .stat-label {
     font-size: 0.75rem; color: rgba(255,255,255,0.65);
     letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem;
+    white-space: nowrap;
   }
 
   /* ── PRODUCTS ── */
@@ -257,12 +267,12 @@
   }
   .owner-placeholder-label { font-size: 14px; font-style: italic; color: #999999; }
 
-  /* About visual — watermark at 8% */
+  /* About visual — watermark at 4%, scaled down 30% */
   .about-visual { display: flex; align-items: center; justify-content: center; position: relative; }
   .about-zh-large {
     font-family: 'Noto Serif SC', serif;
-    font-size: clamp(4rem, 8vw, 9rem);
-    color: rgba(42,172,226,0.08);
+    font-size: clamp(2.8rem, 5.6vw, 6.3rem);
+    color: rgba(42,172,226,0.04);
     line-height: 1; letter-spacing: 0.05em; text-align: center;
   }
   .about-zh-overlay {
@@ -333,16 +343,47 @@
   .form-thankyou { display: none; text-align: center; padding: 2rem 0; font-family: 'DM Serif Display', serif; font-size: 1.3rem; font-style: italic; color: var(--teal); }
 
   /* ── FOOTER ── */
-  footer { background: var(--near-black); padding: 3rem 5%; color: rgba(255,255,255,0.6); }
+  footer { background: var(--near-black); padding: 3rem 5% 0; color: rgba(255,255,255,0.6); }
   .footer-inner {
     max-width: 1200px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 3rem; align-items: start;
+    padding-bottom: 2.5rem;
   }
-  .footer-en { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--teal); }
-  .footer-zh { font-family: 'Noto Serif SC', serif; font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; margin-top: 0.2rem; }
-  .footer-details { font-size: 0.82rem; line-height: 1.8; text-align: right; }
-  .footer-details a { color: rgba(255,255,255,0.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); transition: border-color 0.2s; }
-  .footer-details a:hover { border-color: var(--teal); color: white; }
+  /* Left — brand */
+  .footer-brand { display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-logo-row { display: flex; align-items: center; gap: 0.75rem; }
+  .footer-logo-img { height: 40px; width: auto; display: block; }
+  .footer-logo-fallback { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--teal); }
+  .footer-en { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--teal); }
+  .footer-zh { font-family: 'Noto Serif SC', serif; font-size: 0.72rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; margin-top: 0.15rem; }
+  /* Centre — nav */
+  .footer-nav { display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
+  .footer-nav a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: var(--teal); }
+  /* Right — social */
+  .footer-social { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+  .footer-social-label { font-size: 0.72rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; }
+  .footer-social-icon { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; display: inline-block; }
+  .footer-social-icon:hover { color: var(--teal); }
+  /* Copyright bar */
+  .footer-copy-bar {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid #333333;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.72rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em;
+  }
+  @media (max-width: 768px) {
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
+    .footer-logo-row { justify-content: center; }
+    .footer-nav { align-items: center; }
+    .footer-social { align-items: center; }
+  }
 
   /* ── NAV TOGGLE ── */
   .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
@@ -360,15 +401,16 @@
     .nav-toggle { display: block; }
     .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 0; }
     .hero::before { display: none; }
-    .hero-product-main { aspect-ratio: 16/9; }
     .hero-product-mini { grid-template-columns: 1fr 1fr; }
     .product-grid { grid-template-columns: 1fr; }
     .about-inner { grid-template-columns: 1fr; }
     .about-visual { display: none; }
     .owner-placeholder { width: 100%; height: 200px; }
     .contact-inner { grid-template-columns: 1fr; }
-    .footer-inner { flex-direction: column; text-align: center; }
-    .footer-details { text-align: center; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
+    .footer-logo-row { justify-content: center; }
+    .footer-nav { align-items: center; }
+    .footer-social { align-items: center; }
 
     /* Stats bar — single row, no dot separators, smaller labels */
     .numbers-inner { flex-wrap: nowrap; justify-content: space-around; }
@@ -387,20 +429,13 @@
 <nav id="main-nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <!-- FF circular logo from Facebook — fallback to text if image unavailable -->
-      <img
-        class="nav-logo-img"
-        src="https://graph.facebook.com/Formosafoods/picture?type=large"
-        alt="Formosa Foods"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-      >
-      <span style="display:none; font-family:'DM Serif Display',serif; font-size:1.1rem; color:var(--teal); letter-spacing:-0.01em;">Formosa Foods</span>
+      <span class="nav-logo-en">Formosa Foods</span>
       <span class="nav-logo-zh">寶島食品</span>
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#products">Products</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#contact">Stockists</a></li>
+      <li><a href="#contact">Where To Buy</a></li>
       <li><a href="#contact" class="nav-cta">Enquire Now</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
@@ -421,8 +456,11 @@
     </div>
     <div class="hero-product">
       <div class="hero-product-main">
+        <hr class="hero-product-rule">
         <div class="hero-product-label">Fresh Noodles</div>
-        <div class="hero-product-sub">Christchurch Made · Since 2007</div>
+        <span class="hero-product-zh">麵條</span>
+        <p class="hero-product-desc">Fresh and dried noodle varieties made in-house. Consistent quality for food service operators across New Zealand.</p>
+        <a href="#contact" class="hero-product-enquire">Enquire about supply →</a>
       </div>
       <div class="hero-product-mini">
         <div class="mini-card">
@@ -461,7 +499,7 @@
   <div class="section-inner">
     <div class="section-header">
       <span class="section-kicker">Our Range</span>
-      <h2 class="section-title">Made the right way,<br>from Christchurch to your kitchen.</h2>
+      <h2 class="section-title">Made the right way.</h2>
     </div>
     <div class="product-grid">
 
@@ -506,6 +544,7 @@
       <div class="owner-placeholder">
         <span class="owner-placeholder-label">The Lu Brothers</span>
       </div>
+      <p style="font-size:0.8rem;font-style:italic;color:#999999;margin-top:0.75rem;">The Lu Brothers — making noodles in Christchurch since 2007.</p>
     </div>
     <div class="about-visual">
       <div class="about-zh-large">寶島<br>食品</div>
@@ -528,7 +567,7 @@
       >
       <p class="bidfood-text">Now available nationally through</p>
       <span class="bidfood-badge">Bidfood NZ</span>
-      <p class="bidfood-text">— New Zealand's leading food service distributor</p>
+      <p class="bidfood-text">New Zealand's leading food service distributor</p>
     </div>
   </div>
 </a>
@@ -542,7 +581,12 @@
       <p style="color:var(--grey);margin-top:1rem;font-size:0.95rem;line-height:1.7;">For wholesale, restaurant supply, distribution enquiries, and stockist information — reach out below or contact us directly.</p>
       <div class="contact-details">
         <div class="contact-detail">
-          <span class="contact-detail-icon">📍</span>
+          <span class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:1px;">
+              <path d="M9 1.5C6.515 1.5 4.5 3.515 4.5 6c0 3.75 4.5 10.5 4.5 10.5S13.5 9.75 13.5 6c0-2.485-2.015-4.5-4.5-4.5Z" stroke="#555555" stroke-width="1.2" stroke-linejoin="round" fill="none"/>
+              <circle cx="9" cy="6" r="1.5" stroke="#555555" stroke-width="1.2" fill="none"/>
+            </svg>
+          </span>
           <div class="contact-detail-text">
             <strong>Address</strong>
             32b Sheffield Crescent, Burnside, Christchurch
@@ -559,7 +603,7 @@
           <span class="contact-detail-icon">✉️</span>
           <div class="contact-detail-text">
             <strong>Email</strong>
-            <a href="mailto:formosafoods@xtra.co.nz">formosafoods@xtra.co.nz</a>
+            <a href="/cdn-cgi/l/email-protection#294f465b44465a484f46464d5a69515d5b48074a46074753"><span class="__cf_email__" data-cfemail="cdaba2bfa0a2beacaba2a2a9be8db5b9bface3aea2e3a3b7">[email&#160;protected]</span></a>
           </div>
         </div>
       </div>
@@ -600,19 +644,43 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
+    <!-- Left: brand -->
     <div class="footer-brand">
-      <div class="footer-en">Formosa Foods</div>
+      <div class="footer-logo-row">
+        <img
+          class="footer-logo-img"
+          src="https://graph.facebook.com/Formosafoods/picture?type=large"
+          alt="Formosa Foods"
+          onerror="this.style.display='none';"
+        >
+        <span class="footer-en">Formosa Foods</span>
+      </div>
       <div class="footer-zh">寶島食品 · Made in Christchurch, for New Zealand.</div>
     </div>
-    <div class="footer-details">
-      32b Sheffield Crescent, Burnside, Christchurch<br>
-      <a href="tel:033588798">03 358-8798</a> ·
-      <a href="mailto:formosafoods@xtra.co.nz">formosafoods@xtra.co.nz</a>
+    <!-- Centre: nav -->
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Where To Buy</a>
+      <a href="#contact">Enquire Now</a>
+    </nav>
+    <!-- Right: social -->
+    <div class="footer-social">
+      <span class="footer-social-label">Follow us</span>
+      <a class="footer-social-icon" href="https://www.facebook.com/FormosaFoodsNZ" target="_blank" rel="noopener" aria-label="Formosa Foods on Facebook">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <path d="M13 8h1.5V6H13a3 3 0 0 0-3 3v1.5H8.5V13H10v7h2.5v-7h1.8l.3-2.5H12.5V9a1 1 0 0 1 .5-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </a>
     </div>
+  </div>
+  <div class="footer-copy-bar">
+    © 2026 Formosa Foods. Made in Christchurch.
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Nav scroll shadow
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
@@ -625,13 +693,4 @@
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-  // Form — demo thank you on submit
-  document.getElementById('form-submit-btn').addEventListener('click', () => {
-    const wrap = document.getElementById('contact-form-wrap');
-    // Hide all form rows and button
-    wrap.querySelectorAll('.form-row, .form-submit').forEach(el => el.style.display = 'none');
-    document.getElementById('form-thankyou').style.display = 'block';
-  });
-</script>
-</body>
-</html>
+  // Form — demo th
